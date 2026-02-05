@@ -1,7 +1,9 @@
 import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import img31 from '../assets/sec31.jpg';
 import img32 from '../assets/sec32.jfif';
 import img33 from '../assets/sec33.jpg';
+
 const ImageGrid = () => {
   const items = [
     {
@@ -35,39 +37,61 @@ const ImageGrid = () => {
   ];
 
   return (
-    <section className="w-full bg-black">
-      {/* 1. 'max-w-none' se width poori screen par phail jayegi.
-          2. 'gap-0' se images ke beech ki space khatam ho jayegi (jaisa design mein hota hai).
-      */}
+    <section className="w-full bg-[#050505] overflow-hidden">
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-0">
         {items.map((item) => (
           <div 
             key={item.id} 
-            // 3. Height ko h-[450px] se barakar h-[600px] ya h-[70vh] kar diya hai
-            className="relative h-[500px] md:h-[650px] overflow-hidden group border-b border-white/5 md:border-r"
+            className="relative h-[550px] md:h-[700px] overflow-hidden group border-b border-white/5 md:border-r border-cyan-900/20"
           >
-            {/* Background Image */}
-            <img 
-              src={item.image} 
-              alt={item.title}
-              className="w-full h-full object-cover transition-all duration-1000 ease-in-out grayscale group-hover:grayscale-0 group-hover:scale-105"
-            />
+            {/* Background Image with Duotone Filter */}
+            <div className="absolute inset-0 w-full h-full bg-cyan-900 overflow-hidden">
+              <img 
+                src={item.image} 
+                alt={item.title}
+                className="w-full h-full object-cover transition-all duration-[1.5s] ease-out grayscale brightness-50 group-hover:grayscale-0 group-hover:scale-110 group-hover:brightness-75"
+              />
+              {/* Cyan Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-black/20 opacity-80 group-hover:opacity-40 transition-opacity duration-700"></div>
+            </div>
             
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-700"></div>
+            {/* Aesthetic Corner Accent */}
+            <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+               <ArrowUpRight className="text-cyan-400" size={32} />
+            </div>
 
             {/* Content Overlay */}
-            <div className="absolute inset-0 p-10 md:p-16 flex flex-col justify-end items-start text-white">
-              <h2 className="text-5xl md:text-6xl font-black italic tracking-tighter mb-4 uppercase leading-none">
-                {item.title}
+            <div className="absolute inset-0 p-10 md:p-20 flex flex-col justify-end items-start text-white z-10">
+              
+              {/* Animated Line Tag */}
+              <div className="w-12 h-[2px] bg-cyan-500 mb-6 transition-all duration-500 group-hover:w-24 group-hover:shadow-[0_0_10px_rgba(6,182,212,1)]"></div>
+
+              <h2 className="text-5xl md:text-7xl font-black italic tracking-tighter mb-6 uppercase leading-[0.85] group-hover:text-cyan-50 transition-colors duration-500">
+                {item.title.split(' ').map((word, i) => (
+                  <span key={i} className="block">{word}</span>
+                ))}
               </h2>
-              <p className="text-base font-bold mb-8 max-w-sm opacity-90 uppercase tracking-widest leading-tight">
+
+              <p className="text-[13px] font-bold mb-10 max-w-[320px] text-gray-400 uppercase tracking-[0.15em] leading-relaxed group-hover:text-white transition-colors duration-500">
                 {item.desc}
               </p>
-              <button className="border-2 border-white px-12 py-3 text-sm font-black tracking-widest hover:bg-white hover:text-black transition-all uppercase">
-                {item.btn}
+
+              {/* Custom Aesthetic Button */}
+              <button className="group/btn relative px-10 py-4 overflow-hidden border border-white/20 transition-all duration-300">
+                <span className="absolute inset-0 w-0 bg-white transition-all duration-500 ease-out group-hover/btn:w-full"></span>
+                <span className="relative text-[11px] font-black tracking-[0.3em] uppercase text-white group-hover/btn:text-black">
+                  {item.btn}
+                </span>
+                
+                {/* Neon Glow on Hover */}
+                <div className="absolute -inset-1 bg-cyan-500/0 group-hover/btn:bg-cyan-500/20 blur-lg transition-all"></div>
               </button>
             </div>
+
+            {/* Grid Numbering (Optional Aesthetic Touch) */}
+            <span className="absolute top-10 left-10 text-[10px] font-black text-white/10 tracking-widest">
+              0{item.id} / 04
+            </span>
           </div>
         ))}
       </div>

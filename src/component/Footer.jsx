@@ -1,85 +1,116 @@
 import React from "react";
-import { Instagram, Youtube, Facebook, Twitter } from "lucide-react";
+import { Instagram, Youtube, Facebook, Twitter, Send } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-white font-sans border-t border-gray-100">
+    <footer className="relative w-full bg-[#020617] font-sans border-t border-cyan-500/20 text-white overflow-hidden">
       
+      {/* Subtle Background Theme Shade */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(6,182,212,0.1),transparent_70%)]"></div>
+
       {/* Main Footer Content */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 flex flex-col md:flex-row justify-between gap-12">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 py-20 flex flex-col md:flex-row justify-between gap-16">
         
         {/* Left Section: Logo + Links */}
-        <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-32">
           
-          {/* Logo */}
-          <div className="flex flex-col gap-2">
-            <svg width="60" height="60" viewBox="0 0 24 24" fill="black">
-              <path d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5Z" />
-            </svg>
-            <h2 className="text-xl font-black tracking-tighter uppercase italic">
+          {/* Logo & Brand */}
+          <div className="flex flex-col gap-4 group">
+            <div className="relative">
+              <div className="absolute -inset-2 bg-cyan-500/15 blur-2xl rounded-full opacity-100 group-hover:bg-cyan-500/30 transition-all duration-500"></div>
+              <svg width="65" height="65" viewBox="0 0 24 24" fill="white" className="relative group-hover:fill-cyan-400 transition-colors duration-300 transform group-hover:scale-105">
+                <path d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5Z" />
+              </svg>
+            </div>
+            <h2 className="text-2xl font-black tracking-tighter uppercase italic leading-none text-cyan-50">
               WEST COAST 
-              <span className="text-[10px] align-top">®</span>
+              <span className="text-cyan-500 text-[12px] align-top ml-1">®</span>
             </h2>
           </div>
 
-          {/* Navigation Links Column 1 */}
-          <div className="flex flex-col gap-4 text-sm font-bold tracking-widest text-black">
-            <a href="#" className="hover:opacity-60 transition-opacity uppercase">Products</a>
-            <a href="#" className="hover:opacity-60 transition-opacity uppercase">Find</a>
-            <a href="#" className="hover:opacity-60 transition-opacity uppercase">Retailer Signup</a>
-          </div>
-
-          {/* Navigation Links Column 2 */}
-          <div className="flex flex-col gap-4 text-sm font-bold tracking-widest text-black">
-            <a href="#" className="hover:opacity-60 transition-opacity uppercase">Contact Us</a>
-            <a href="#" className="hover:opacity-60 transition-opacity uppercase">Careers</a>
-            <a href="#" className="hover:opacity-60 transition-opacity uppercase">Order WCC</a>
+          {/* Navigation Links Grid */}
+          <div className="grid grid-cols-2 gap-x-16 gap-y-6">
+            <div className="flex flex-col gap-4 text-[12px] font-black tracking-[0.25em] text-cyan-100/40">
+              <a href="#" className="hover:text-cyan-400 transition-colors uppercase">Products</a>
+              <a href="#" className="hover:text-cyan-400 transition-colors uppercase">Find</a>
+              <a href="#" className="hover:text-cyan-400 transition-colors uppercase">Retailer Signup</a>
+            </div>
+            <div className="flex flex-col gap-4 text-[12px] font-black tracking-[0.25em] text-cyan-100/40">
+              <a href="#" className="hover:text-cyan-400 transition-colors uppercase">Contact Us</a>
+              <a href="#" className="hover:text-cyan-400 transition-colors uppercase">Careers</a>
+              <a href="#" className="hover:text-cyan-400 transition-colors uppercase">Order WCC</a>
+            </div>
           </div>
         </div>
 
         {/* Right Section: Stay Connected */}
-        <div className="mt-12 md:mt-0 flex flex-col gap-6 max-w-sm">
+        <div className="relative flex flex-col gap-8 max-w-md w-full">
           <div className="relative">
-            <h3 className="text-3xl font-black tracking-tighter uppercase italic">
+            <h3 className="text-4xl font-black tracking-tighter uppercase italic bg-gradient-to-r from-white via-cyan-100 to-cyan-500/50 bg-clip-text text-transparent">
               Stay Connected
             </h3>
-            <div className="w-full h-[2px] mt-1 bg-[repeating-linear-gradient(45deg,transparent,transparent_5px,black_5px,black_10px)]"></div>
+            <div className="w-full h-[2px] mt-2 bg-gradient-to-r from-cyan-500 via-blue-600 to-transparent rounded-full shadow-[0_0_15px_rgba(6,182,212,0.6)]"></div>
           </div>
 
-          <p className="text-xs text-gray-600 font-medium leading-relaxed">
-            Sign up for the WCC newsletter for promos, deals, and news.
+          <p className="text-[13px] text-cyan-100/50 font-medium leading-relaxed tracking-wide">
+            Join the elite. Sign up for the WCC newsletter for exclusive promos, drops, and news.
           </p>
 
-          <button className="w-fit border-2 border-black px-12 py-2 text-sm font-bold tracking-widest hover:bg-black hover:text-white transition-all">
-            SIGN UP
-          </button>
+          <div className="flex gap-2">
+             <button className="group relative overflow-hidden bg-cyan-50 px-10 py-3 text-sm font-black tracking-[0.2em] text-black transition-all">
+                <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-cyan-600 to-blue-600 transition-transform duration-300 group-hover:translate-x-0"></span>
+                <span className="relative uppercase flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+                    Sign Up <Send size={14} />
+                </span>
+             </button>
+          </div>
 
-          {/* Social Icons */}
-          <div className="flex gap-4 items-center">
-            <Instagram size={20} fill="black" className="cursor-pointer hover:opacity-60" />
-            <Youtube size={20} fill="black" className="cursor-pointer hover:opacity-60" />
-            <Facebook size={20} fill="black" className="cursor-pointer hover:opacity-60" />
-            <Twitter size={20} fill="black" className="cursor-pointer hover:opacity-60" />
+          {/* Social Icons with Theme Glow */}
+          <div className="flex gap-6 items-center">
+            {[Instagram, Youtube, Facebook, Twitter].map((Icon, idx) => (
+              <div key={idx} className="relative group">
+                <div className="absolute -inset-2 bg-cyan-400/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <Icon size={22} className="relative text-cyan-100/30 group-hover:text-cyan-400 cursor-pointer transition-all transform group-hover:-translate-y-1" />
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Black Bottom Bar */}
-      <div className="w-full bg-black text-white py-8 px-6">
-        <div className="max-w-[1440px] mx-auto flex flex-col items-center gap-4">
-          <p className="text-[10px] tracking-widest font-bold opacity-80">
-            © 2025 TRILLI, LLC. ALL RIGHTS RESERVED
-          </p>
-          <p className="text-[10px] tracking-widest font-bold opacity-80">
-            LIC. NO. C11-0001932-LIC
-          </p>
+      {/* --- REFINED BOTTOM LEGAL BAR --- */}
+      <div className="relative w-full bg-[#030a1a] border-t border-cyan-500/10 py-10 px-6">
+        {/* Extra Bottom Glow Layer */}
+        <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/5 to-transparent"></div>
+        
+        <div className="relative z-10 max-w-[1440px] mx-auto flex flex-col items-center text-center gap-8">
+          
+          {/* Logo or Iconic Mark (Optional small version) */}
+          <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
 
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-4 text-[10px] font-bold tracking-widest uppercase opacity-90">
-            <a href="#" className="hover:underline">Terms of Use</a>
-            <a href="#" className="hover:underline">Privacy Policy</a>
-            <a href="#" className="hover:underline">Privacy Notice for California Consumers</a>
-            <a href="#" className="hover:underline">Prop 65 Warnings</a>
-            <a href="#" className="hover:underline">Notice at Collection</a>
+          <div className="flex flex-col gap-3 opacity-40 hover:opacity-100 transition-all duration-700">
+            <p className="text-[10px] tracking-[0.4em] font-bold text-cyan-50 uppercase">
+              © 2025 TRILLI, LLC. ALL RIGHTS RESERVED
+            </p>
+            <div className="flex items-center justify-center gap-2">
+              <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(6,182,212,1)]"></span>
+              <p className="text-[10px] tracking-[0.4em] font-bold text-cyan-100/60 uppercase">
+                LIC. NO. C11-0001932-LIC
+              </p>
+            </div>
+          </div>
+
+          {/* Legal Links with Hover Underline Effect */}
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 text-[9px] font-black tracking-[0.25em] uppercase text-cyan-100/20">
+            {["Terms of Use", "Privacy Policy", "Prop 65 Warnings", "Notice at Collection"].map((item) => (
+              <a 
+                key={item} 
+                href="#" 
+                className="relative group py-1 hover:text-cyan-400 transition-all duration-300"
+              >
+                {item}
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-cyan-500/50 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            ))}
           </div>
         </div>
       </div>

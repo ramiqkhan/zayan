@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, ShoppingBag } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,39 +14,55 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="w-screen sticky top-0 left-0 z-50 bg-white border-b border-gray-200 relative">
-      <div className="w-full px-4 md:px-10">
-        <div className="flex justify-between items-center h-20">
+    <nav className="w-full fixed top-0 left-0 z-[100] py-4 transition-all duration-300">
+      {/* Constant Background with Blue Shade & Glassmorphism */}
+      <div className="absolute inset-0 bg-[#020617]/90 backdrop-blur-xl border-b border-cyan-500/20 shadow-[0_4px_30px_rgba(0,180,211,0.1)]">
+        {/* Subtle Radial Blue Glow for depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.15),transparent_70%)]"></div>
+      </div>
+
+      <div className="relative max-w-[1440px] mx-auto px-6 md:px-12">
+        <div className="flex justify-between items-center h-12">
           
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="black">
+          {/* Logo Section */}
+          <div className="group relative flex-shrink-0 cursor-pointer">
+            <div className="absolute -inset-3 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/30 transition-all duration-500"></div>
+            <svg 
+              width="45" height="45" viewBox="0 0 24 24" fill="white" 
+              className="relative group-hover:fill-cyan-400 transition-all duration-500 transform group-hover:scale-110"
+            >
               <path d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5Z" />
             </svg>
           </div>
 
-          {/* Desktop Links */}
+          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-10">
             {navLinks.map((link) => (
               <a
                 key={link}
                 href="#"
-                className="text-[13px] font-black tracking-widest text-black hover:text-gray-500 transition"
+                className="relative text-[11px] font-black tracking-[0.25em] text-cyan-100/70 hover:text-cyan-300 transition-all duration-300 group"
               >
-                {link}
+                <span className="relative z-10">{link}</span>
+                <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-cyan-500 transition-all duration-300 group-hover:w-full shadow-[0_0_12px_rgba(6,182,212,1)]"></span>
               </a>
             ))}
           </div>
 
-          {/* Right Section */}
-          <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-gray-100 rounded-full">
-              <Search size={22} strokeWidth={2.5} />
+          {/* Utility Icons */}
+          <div className="flex items-center gap-8">
+            <button className="text-cyan-100/50 hover:text-cyan-400 transition-all duration-300">
+              <Search size={20} strokeWidth={2.5} />
+            </button>
+            
+            <button className="hidden sm:block relative text-cyan-100/50 hover:text-cyan-400 transition-all duration-300">
+              <ShoppingBag size={20} strokeWidth={2.5} />
+              <span className="absolute -top-1 -right-2 w-2 h-2 bg-cyan-500 rounded-full shadow-[0_0_10px_rgba(6,182,212,1)] animate-pulse"></span>
             </button>
 
-            {/* Toggle Button */}
+            {/* Mobile Toggle */}
             <button
-              className="lg:hidden p-2"
+              className="lg:hidden text-cyan-50"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -55,23 +71,24 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="lg:hidden absolute top-20 left-0 w-screen bg-white border-b shadow-lg z-40">
-          <div className="flex flex-col p-6 space-y-4">
-            {navLinks.map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="text-lg font-black tracking-widest text-black border-b border-gray-100 py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                {link}
-              </a>
-            ))}
-          </div>
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`lg:hidden absolute top-[100%] left-0 w-full bg-[#020617] border-b border-cyan-500/20 transition-all duration-500 ease-in-out overflow-hidden
+        ${isOpen ? "max-h-screen opacity-100 py-10" : "max-h-0 opacity-0"}`}
+      >
+        <div className="flex flex-col px-10 space-y-8">
+          {navLinks.map((link) => (
+            <a
+              key={link}
+              href="#"
+              className="text-2xl font-black tracking-[0.2em] text-cyan-50 hover:text-cyan-400 transition-all"
+              onClick={() => setIsOpen(false)}
+            >
+              {link}
+            </a>
+          ))}
         </div>
-      )}
+      </div>
     </nav>
   );
 };
